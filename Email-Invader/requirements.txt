@@ -1,0 +1,4 @@
+ requests
+ Fore
+ Style
+ colorama
