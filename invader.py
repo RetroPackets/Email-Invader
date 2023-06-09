@@ -14,13 +14,15 @@ class bcolors:
 
 def bomb():
 	os.system('clear')
-	print (f'''
+	print(
+		'''
 
 
 █▀▀ █▀▄▀█ ▄▀█ █ █░░   █ █▄░█ █░█ ▄▀█ █▀▄ █▀▀ █▀█
 ██▄ █░▀░█ █▀█ █ █▄▄   █ █░▀█ ▀▄▀ █▀█ █▄▀ ██▄ █▀▄
 
-''' )
+'''
+	)
 
 
 os.system('clear')
@@ -78,14 +80,14 @@ try:
 	body = input(f'{Fore.BLUE}Message{Fore.YELLOW}: ')
 	nomes = input(f'{Fore.BLUE}Number of Emails to send{Fore.YELLOW}: ')
 	no = 0
-	message = 'From: ' + user + '\nSubject: ' + subject + '\n' + body
+	message = f'From: {user}' + '\nSubject: ' + subject + '\n' + body
 except KeyboardInterrupt:
 	print (bcolors.FAIL + '\nCanceled' + bcolors.ENDC)
 	sys.exit()
 
 #Gmail
 
-if server == '1' or server == 'gmail' or server == 'Gmail':
+if server in ['1', 'gmail', 'Gmail']:
 	bomb()
 	server = smtplib.SMTP("smtp.gmail.com", 587)
 	server.ehlo()
@@ -100,7 +102,10 @@ if server == '1' or server == 'gmail' or server == 'Gmail':
 	while no != nomes:
 		try:
 			server.sendmail(user, to, message)
-			print (f'{Fore.WHITE}[Email Invader]{Fore.GREEN} SENT:{Fore.YELLOW} ' + str(no+1) + f' {Fore.CYAN}EMAILS')
+			print(
+				f'{Fore.WHITE}[Email Invader]{Fore.GREEN} SENT:{Fore.YELLOW} {str(no + 1)}'
+				+ f' {Fore.CYAN}EMAILS'
+			)
 			no += 1
 			time.sleep(.8)
 		except KeyboardInterrupt:
@@ -109,9 +114,8 @@ if server == '1' or server == 'gmail' or server == 'Gmail':
 		except:
 			print (f"{Fore.CYAN}[Email Invader] {Fore.RED}FAILED TO SEND ")
 	server.close()
-	
-#Yahoo
-elif server == '2' or server == 'Yahoo' or server == 'yahoo':
+
+elif server in ['2', 'Yahoo', 'yahoo']:
 	server = smtplib.SMTP("smtp.mail.yahoo.com", 587)
 	bomb()
 	server.starttls()
@@ -126,7 +130,10 @@ elif server == '2' or server == 'Yahoo' or server == 'yahoo':
 	while no != nomes:
 		try:
 			server.sendmail(user, to, message)
-			print (f'{Fore.WHITE}[Email Invader]{Fore.GREEN} SENT:{Fore.YELLOW} ' + str(no + 1) + ' {Fore.CYAN}EMAILS')
+			print(
+				f'{Fore.WHITE}[Email Invader]{Fore.GREEN} SENT:{Fore.YELLOW} {str(no + 1)}'
+				+ ' {Fore.CYAN}EMAILS'
+			)
 			no += 1
 			time.sleep(.8)
 		except KeyboardInterrupt:
@@ -135,9 +142,8 @@ elif server == '2' or server == 'Yahoo' or server == 'yahoo':
 		except:
 			print (f"{Fore.CYAN}[Email Invader] {Fore.RED}FAILED TO SEND ")
 	server.close()
-	
-#Hotmail/Outlook
-elif server == '3' or server == 'outlook' or server == 'Outlook' or server == 'Hotmail' or server == 'hotmail':
+
+elif server in ['3', 'outlook', 'Outlook', 'Hotmail', 'hotmail']:
 	server = smtplib.SMTP("smtp-mail.outlook.com", 587)
 	bomb()
 	server.ehlo()
@@ -150,7 +156,11 @@ elif server == '3' or server == 'outlook' or server == 'Outlook' or server == 'H
 	while no != nomes:
 		try:
 			server.sendmail(user, to, message)
-			print (f'{Fore.WHITE}[Email Invader]{Fore.GREEN} SENT: {Fore.YELLOW}' + str(no + 1) + ' {Fore.CYAN}EMAILS' + bcolors.ENDC)
+			print(
+				f'{Fore.WHITE}[Email Invader]{Fore.GREEN} SENT: {Fore.YELLOW}{str(no + 1)}'
+				+ ' {Fore.CYAN}EMAILS'
+				+ bcolors.ENDC
+			)
 			no += 1
 			time.sleep(.8)
 		except KeyboardInterrupt:
@@ -162,7 +172,7 @@ elif server == '3' or server == 'outlook' or server == 'Outlook' or server == 'H
 		except:
 			print (f"{Fore.CYAN}[Email Invader] {Fore.RED}FAILED TO SEND ")
 	server.close()
-	
+
 else:
 	print (f'{Fore.YELLOW}Works only with {Fore.BLUE}Gmail{Fore.YELLOW}, Yahoo{Fore.YELLOW}, Outlook {Fore.YELLOW}and {Fore.BLUE}Hotmail{Fore.YELLOW}.')
 	sys.exit()
